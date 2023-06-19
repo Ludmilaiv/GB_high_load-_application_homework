@@ -17,11 +17,12 @@ export function News(props: NewsProps) {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3333/api/news')
+    fetch('http://localhost:3001/api/news')
       .then(response => response.json())
       .then(news => {
+        console.time('sorting');
         const sortedNews = sortNews(news);
-
+        console.timeEnd('sorting');
         setNews(sortedNews);
       })
   }, []);
